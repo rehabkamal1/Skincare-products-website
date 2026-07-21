@@ -1,0 +1,637 @@
+<!-- Header / Navigation -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        [ngClass]="{'bg-luxury-dark/95 backdrop-blur-md border-b border-luxury-border py-3 shadow-luxury': isScrolled, 'bg-gradient-to-b from-luxury-dark/90 to-transparent py-5': !isScrolled}">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    
+    <!-- Logo & Brand -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-gold-500 shadow-gold-glow transition-transform group-hover:scale-105">
+        <img src="logo.jpeg" alt="The Goldy Choices Logo" class="w-full h-full object-cover">
+      </div>
+      <div>
+        <span class="text-xl md:text-2xl font-black font-cairo tracking-wider text-white group-hover:text-gold-400 transition-colors">THE GOLDY <span class="text-gold-400">CHOICES</span></span>
+        <span class="block text-[10px] tracking-widest text-luxury-muted uppercase font-tajawal">Body & Skin Care</span>
+      </div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-semibold font-cairo">
+      <a href="#hero" class="text-luxury-cream hover:text-gold-400 transition-colors">الرئيسية</a>
+      <a href="#products" class="text-luxury-cream hover:text-gold-400 transition-colors">منتجاتنا</a>
+      <a href="#about" class="text-luxury-cream hover:text-gold-400 transition-colors">من نحن</a>
+      <a href="#ingredients" class="text-luxury-cream hover:text-gold-400 transition-colors">المكونات</a>
+      <a href="#faq" class="text-luxury-cream hover:text-gold-400 transition-colors">الأسئلة الشائعة</a>
+      <a href="#order-form" class="text-luxury-cream hover:text-gold-400 transition-colors">تواصل معنا</a>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:block">
+      <button (click)="scrollToForm()" class="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 hover:from-gold-500 hover:to-gold-300 text-luxury-dark font-extrabold px-6 py-2.5 rounded-full shadow-gold-glow hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 font-cairo text-sm">
+        اطلب الآن
+      </button>
+    </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button (click)="toggleMobileMenu()" class="md:hidden text-luxury-cream hover:text-gold-400 p-2 focus:outline-none" aria-label="Toggle Menu">
+      <svg *ngIf="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg *ngIf="isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div *ngIf="isMobileMenuOpen" class="md:hidden bg-luxury-surface/98 border-b border-luxury-border px-6 py-6 space-y-4 animate-fade-in-up shadow-2xl font-cairo">
+    <a href="#hero" (click)="closeMobileMenu()" class="block text-base font-semibold text-luxury-cream hover:text-gold-400 py-1 border-b border-luxury-border/40">الرئيسية</a>
+    <a href="#products" (click)="closeMobileMenu()" class="block text-base font-semibold text-luxury-cream hover:text-gold-400 py-1 border-b border-luxury-border/40">منتجاتنا</a>
+    <a href="#about" (click)="closeMobileMenu()" class="block text-base font-semibold text-luxury-cream hover:text-gold-400 py-1 border-b border-luxury-border/40">من نحن</a>
+    <a href="#ingredients" (click)="closeMobileMenu()" class="block text-base font-semibold text-luxury-cream hover:text-gold-400 py-1 border-b border-luxury-border/40">المكونات</a>
+    <a href="#faq" (click)="closeMobileMenu()" class="block text-base font-semibold text-luxury-cream hover:text-gold-400 py-1 border-b border-luxury-border/40">الأسئلة الشائعة</a>
+    <a href="#order-form" (click)="closeMobileMenu()" class="block text-base font-semibold text-luxury-cream hover:text-gold-400 py-1">تواصل معنا</a>
+    <div class="pt-3">
+      <button (click)="scrollToForm()" class="w-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 text-luxury-dark font-extrabold py-3 rounded-xl shadow-gold-glow text-center font-cairo">
+        اطلب الآن
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="hero" class="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden">
+  <!-- Background Glow & Decorative Elements -->
+  <div class="absolute top-1/4 right-[-10%] w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-10 left-[-10%] w-[450px] h-[450px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Text Column (Right) -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-right animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-sm font-semibold mb-2">
+          <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span>
+          عناية فاخرة ومطورة بعناية
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-cairo text-white leading-[1.15]">
+          استعيدي ثقتك بنفسك...
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 mt-2">
+            وامنحي بشرتك العناية التي تستحقها
+          </span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-luxury-muted font-tajawal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+          مرحبًا بك في <span class="text-gold-400 font-bold">The Goldy Choices</span>، حيث نهتم بتقديم منتجات عناية بالجسم يتم تطويرها بعناية واهتمام فائق بالجودة لتمنحك تجربة استخدام مميزة ولمسة فاخرة تعيد لك إشراقتك.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+          <button (click)="scrollToForm()" class="w-full sm:w-auto bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 hover:from-gold-500 hover:to-gold-300 text-luxury-dark font-black px-10 py-4 rounded-2xl shadow-gold-glow hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-lg font-cairo flex items-center justify-center gap-2">
+            <span>اطلب الآن</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+          
+          <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-2xl border border-luxury-border hover:border-gold-500/50 text-luxury-cream hover:text-gold-400 transition-all font-cairo font-bold text-center">
+            اكتشفي المنتج
+          </a>
+        </div>
+
+        <div class="pt-6 border-t border-luxury-border/60 flex flex-wrap justify-center lg:justify-start gap-8 text-sm text-luxury-muted font-tajawal">
+          <div class="flex items-center gap-2">
+            <span class="text-gold-400 text-lg">✨</span>
+            <span>ترطيب عميق ومكثف</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-gold-400 text-lg">🛡️</span>
+            <span>مسجل في هيئة الدواء</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-gold-400 text-lg">🌿</span>
+            <span>مكونات طبيعية وفعالة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Product Photo Column (Left) -->
+      <div class="lg:col-span-5 flex justify-center relative">
+        <div class="relative w-full max-w-md">
+          <!-- Ambient Gold Glow Backing -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-gold-500/20 via-amber-500/10 to-transparent rounded-3xl blur-2xl transform -rotate-3 animate-pulse"></div>
+          
+          <!-- Product Card Wrapper -->
+          <div class="relative bg-luxury-card/90 border border-gold-500/30 rounded-3xl p-6 shadow-2xl backdrop-blur-sm overflow-hidden">
+            
+            <div class="absolute top-4 right-4 z-10 bg-gold-500/90 text-luxury-dark font-extrabold text-xs px-3 py-1 rounded-full shadow font-cairo">
+              المنتج الأصلي
+            </div>
+
+            <!-- Real Product Photo -->
+            <div class="rounded-2xl overflow-hidden bg-luxury-dark/50 flex items-center justify-center p-4 border border-luxury-border/50">
+              <img src="product.jpeg" alt="The Goldy Choices Cream Package" class="w-full h-auto max-h-[420px] object-contain transform hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_20px_rgba(0,0,0,0.8)]">
+            </div>
+
+            <div class="mt-5 text-center">
+              <h3 class="text-xl font-bold font-cairo text-white">The Goldy Choices Cream</h3>
+              <p class="text-sm text-gold-400 mt-1 font-tajawal">كريم العناية الفائقة بمنطقة البطن والسيلوليت</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Why Trust Us Section ("لماذا يثق العملاء بنا؟") -->
+<section class="py-16 bg-luxury-surface/80 border-y border-luxury-border relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-2xl md:text-4xl font-black font-cairo text-white">لماذا يثق العملاء بنا؟</h2>
+      <div class="w-20 h-1 bg-gold-500 mx-auto mt-3 rounded-full"></div>
+      <p class="text-luxury-muted mt-3 font-tajawal">نلتزم في كل مرحلة بأعلى معايير الجودة والأمان لضمان راحتك ورضاك</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="bg-luxury-card border border-luxury-border hover:border-gold-500/50 p-8 rounded-3xl transition-all duration-300 transform hover:-translate-y-2 group shadow-luxury">
+        <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+          🏛️
+        </div>
+        <h3 class="text-xl font-bold font-cairo text-white mb-3 group-hover:text-gold-400 transition-colors">مسجل لدى هيئة الدواء المصرية</h3>
+        <p class="text-luxury-muted font-tajawal text-sm leading-relaxed">
+          تم تصنيع المنتج واختباره وفق أدق معايير السلامة والأمان، وهو مسجل رسميًا لدى هيئة الدواء المصرية برقم <span class="text-gold-400 font-mono font-bold">COSMTOL26127860</span>.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-luxury-card border border-luxury-border hover:border-gold-500/50 p-8 rounded-3xl transition-all duration-300 transform hover:-translate-y-2 group shadow-luxury">
+        <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+          🧪
+        </div>
+        <h3 class="text-xl font-bold font-cairo text-white mb-3 group-hover:text-gold-400 transition-colors">تركيبة مطورة بعناية</h3>
+        <p class="text-luxury-muted font-tajawal text-sm leading-relaxed">
+          تم تطوير التركيبة بعد مراحل مكثفة من البحث العلمي والتجارب الدقيقة لتحقيق التوازن المثالي بين الفعالية الملحوظة واللطف على البشرة.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-luxury-card border border-luxury-border hover:border-gold-500/50 p-8 rounded-3xl transition-all duration-300 transform hover:-translate-y-2 group shadow-luxury">
+        <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+          ⭐
+        </div>
+        <h3 class="text-xl font-bold font-cairo text-white mb-3 group-hover:text-gold-400 transition-colors">مكونات مختارة بجودة عالية</h3>
+        <p class="text-luxury-muted font-tajawal text-sm leading-relaxed">
+          ننتقي أفضل المستخلصات الفعالة والمكونات المغذية (مثل النياسيناميد وحمض الهيالورونيك والباكوتشايول) لضمان أفضل نتيجة ممكنة.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Product Section ("منتجاتنا") -->
+<section id="products" class="py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-gold-400 text-sm font-bold tracking-widest uppercase font-tajawal">منتجاتنا المميزة</span>
+      <h2 class="text-3xl md:text-5xl font-black font-cairo text-white mt-2">The Goldy Choices Cream</h2>
+      <div class="w-24 h-1.5 bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mt-4 rounded-full"></div>
+      <p class="text-luxury-muted mt-4 font-tajawal text-lg">
+        لأن جمالك يبدأ من إحساسك بنفسك... صُمم هذا الكريم خصيصًا ليمنحك اللمسة التي تبحثين عنها.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Large Cream Photo Column -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-lg bg-gradient-to-b from-luxury-card to-luxury-surface border border-luxury-border rounded-3xl p-8 shadow-2xl group">
+          <div class="absolute -top-3 -left-3 w-20 h-20 bg-gold-500/10 rounded-full blur-xl"></div>
+          <img src="product.jpeg" alt="The Goldy Choices Cream Product Detail" class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl mx-auto max-h-[480px]">
+        </div>
+      </div>
+
+      <!-- Description & Benefit Cards -->
+      <div class="lg:col-span-7 space-y-8">
+        <div>
+          <h3 class="text-2xl md:text-3xl font-extrabold font-cairo text-gold-400 mb-4 leading-snug">
+            استعيدي ثقتك... وامنحي بشرتك العناية التي تستحقها.
+          </h3>
+          <p class="text-luxury-cream/90 font-tajawal text-base md:text-lg leading-relaxed mb-4">
+            قد تمر كل امرأة بمرحلة تشعر فيها أن مظهر منطقة البطن أو السيلوليت لم يعد كما تتمنى. لذلك جاء <span class="text-gold-400 font-bold">The Goldy Choices Cream</span> بتركيبة فعالة ومبتكرة للعناية بالبشرة، تساعد على تحسين مظهر منطقة البطن والسيلوليت، مع ترطيب عميق ومرونة تمنح البشرة إحساسًا بالنعومة والعناية الفائقة مع الاستخدام المنتظم.
+          </p>
+          <p class="text-luxury-muted font-tajawal text-base leading-relaxed">
+            لأن ثقتك بنفسك تبدأ عندما تشعرين بالرضا عن نفسك، اخترنا لك هذه التركيبة لترافقك في روتيني العناية اليومي.
+          </p>
+        </div>
+
+        <!-- Benefit Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-luxury-card/90 border border-luxury-border p-4 rounded-2xl flex items-center gap-4 hover:border-gold-500/40 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-lg flex-shrink-0">✔</div>
+            <span class="text-white font-bold font-cairo text-base">ترطيب عميق يدوم طويلاً</span>
+          </div>
+
+          <div class="bg-luxury-card/90 border border-luxury-border p-4 rounded-2xl flex items-center gap-4 hover:border-gold-500/40 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-lg flex-shrink-0">✔</div>
+            <span class="text-white font-bold font-cairo text-base">يساعد على تحسين مظهر البطن</span>
+          </div>
+
+          <div class="bg-luxury-card/90 border border-luxury-border p-4 rounded-2xl flex items-center gap-4 hover:border-gold-500/40 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-lg flex-shrink-0">✔</div>
+            <span class="text-white font-bold font-cairo text-base">يساعد على تحسين مظهر السيلوليت</span>
+          </div>
+
+          <div class="bg-luxury-card/90 border border-luxury-border p-4 rounded-2xl flex items-center gap-4 hover:border-gold-500/40 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-lg flex-shrink-0">✔</div>
+            <span class="text-white font-bold font-cairo text-base">مرونة وحيوية فائقة للبشرة</span>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <button (click)="scrollToForm()" class="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 hover:from-gold-500 hover:to-gold-300 text-luxury-dark font-black px-8 py-4 rounded-2xl shadow-gold-glow hover:shadow-xl transition-all duration-300 font-cairo text-base">
+            اطلبي المنتج الآن وتألقي
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About Us Section ("من نحن") -->
+<section id="about" class="py-24 bg-luxury-surface relative">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12">
+      <span class="text-gold-400 text-sm font-bold tracking-widest uppercase font-tajawal">من نحن</span>
+      <h2 class="text-3xl md:text-5xl font-black font-cairo text-white mt-2">عناية حقيقية تبدأ بالخبرة</h2>
+      <div class="w-20 h-1 bg-gold-500 mx-auto mt-3 rounded-full"></div>
+    </div>
+
+    <!-- Elegant Doctor Card -->
+    <div class="bg-luxury-card border border-gold-500/30 rounded-3xl p-8 md:p-14 shadow-2xl relative overflow-hidden">
+      <!-- Glow decoration -->
+      <div class="absolute -right-20 -top-20 w-60 h-60 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row gap-8 items-center md:items-start relative z-10">
+        
+        <!-- Avatar/Icon Representation -->
+        <div class="w-28 h-28 md:w-36 md:h-36 rounded-3xl bg-gradient-to-br from-gold-400 to-gold-600 p-1 flex-shrink-0 shadow-gold-glow flex items-center justify-center">
+          <div class="w-full h-full bg-luxury-dark rounded-[22px] flex items-center justify-center text-gold-400 text-5xl font-cairo font-bold">
+            د.آ
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="flex-1 text-center md:text-right space-y-4">
+          <div>
+            <h3 class="text-2xl md:text-3xl font-black font-cairo text-white">د. آية ...</h3>
+            <p class="text-gold-400 font-semibold font-tajawal text-sm md:text-base mt-1">
+              صيدلانية وأخصائية تغذية علاجية وسمنة ونحافة وتغذية أطفال
+            </p>
+          </div>
+
+          <div class="space-y-4 text-luxury-cream/90 font-tajawal text-base leading-relaxed">
+            <p>
+              أسعى دائمًا إلى تقديم منتجات تجمع بين الجودة العالية والفعالية الحقيقية والاهتمام الصادق بصحة البشرة.
+            </p>
+            <p>
+              انطلاقًا من خبرتي العلمية والطبية، قمت بتطوير تركيبة <span class="text-gold-400 font-bold">The Goldy Choices Cream</span> بعد مراحل دقيقة ومكثفة من البحث والتطوير واختيار المكونات بعناية فائقة، بهدف تقديم منتج موثوق يساعد على تحسين مظهر منطقة البطن والسيلوليت، مع ترطيب عميق ومرونة للبشرة، ليمنحك تجربة استخدام مميزة.
+            </p>
+            <p>
+              في <span class="text-gold-400 font-bold">The Goldy Choices</span> نؤمن أن ثقة عملائنا تُبنى على الصدق والجودة والاهتمام بالتفاصيل، لذلك نحرص على أن يكون كل منتج نقدمه نتيجة عناية حقيقية في كل مرحلة، بدايةً من تطوير التركيبة وحتى وصوله إليكم... <span class="text-gold-300 font-semibold">لأن ثقتك بنفسك تبدأ عندما تختارين العناية التي تستحقينها.</span>
+            </p>
+          </div>
+
+          <!-- Registration Badge at the End -->
+          <div class="pt-6 border-t border-luxury-border/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 bg-luxury-dark/80 border border-gold-500/40 px-5 py-3 rounded-2xl">
+              <span class="text-2xl">🛡️</span>
+              <div>
+                <span class="block text-xs text-luxury-muted font-tajawal">التسجيل والترخيص</span>
+                <span class="block text-sm font-bold font-cairo text-white">مسجل لدى هيئة الدواء المصرية</span>
+              </div>
+            </div>
+
+            <div class="bg-gold-500/10 border border-gold-500/30 px-5 py-3 rounded-2xl text-center sm:text-left">
+              <span class="block text-[11px] text-gold-400 uppercase font-tajawal tracking-wider">Registration Number</span>
+              <span class="block text-base font-mono font-bold text-gold-300 tracking-wider">COSMTOL26127860</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Ingredients Section ("المكونات الفعالة") -->
+<section id="ingredients" class="py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-gold-400 text-sm font-bold tracking-widest uppercase font-tajawal">التركيبة المتطورة</span>
+      <h2 class="text-3xl md:text-5xl font-black font-cairo text-white mt-2">المكونات الفعالة</h2>
+      <div class="w-24 h-1.5 bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mt-4 rounded-full"></div>
+      <p class="text-luxury-muted mt-4 font-tajawal text-lg">
+        اخترنا لك نخبة من أفضل المكونات الطبيعية والمستخلصات الفائقة لضمان فعالية حقيقية ولمسة حريرية
+      </p>
+    </div>
+
+    <!-- Ingredients Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div *ngFor="let item of ingredients" class="bg-luxury-card border border-luxury-border hover:border-gold-500/60 p-6 rounded-3xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-luxury">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-3xl mb-5 group-hover:scale-110 transition-transform">
+            {{ item.icon }}
+          </div>
+          <h3 class="text-xl font-bold font-cairo text-white mb-2 group-hover:text-gold-400 transition-colors">
+            {{ item.name }}
+          </h3>
+          <p class="text-luxury-muted font-tajawal text-sm leading-relaxed">
+            {{ item.description }}
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-luxury-border/40 flex items-center justify-between text-xs text-gold-400/80 font-tajawal">
+          <span>عناية فائقة</span>
+          <span>✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Note -->
+    <div class="mt-12 max-w-2xl mx-auto text-center bg-luxury-surface border border-luxury-border/60 p-4 rounded-2xl">
+      <p class="text-xs sm:text-sm text-luxury-muted font-tajawal">
+        ✨ <span class="text-gold-400 font-semibold">ملاحظة:</span> تحتوي التركيبة أيضًا على مجموعة من المكونات المساعدة التي تم اختيارها بعناية لضمان أفضل تجربة استخدام وجودة للمنتج.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Gold CTA Banner -->
+<section class="py-16 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 text-luxury-dark relative overflow-hidden shadow-2xl">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-cairo leading-tight">
+      استعيدي ثقتك بنفسك...
+      <span class="block text-2xl sm:text-3xl md:text-4xl font-extrabold mt-2 text-black/90">
+        وامنحي بشرتك العناية التي تستحقها.
+      </span>
+    </h2>
+    <p class="text-lg md:text-xl font-tajawal font-medium max-w-2xl mx-auto text-black/80">
+      ابدئي رحلة العناية اليوم مع The Goldy Choices Cream واستمتعي ببشرة ناعمة ومرنة ومشرقة.
+    </p>
+    <div class="pt-2">
+      <button (click)="scrollToForm()" class="bg-luxury-dark text-white hover:bg-black font-black px-10 py-4 rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105 font-cairo text-lg">
+        اطلب الآن
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section ("الأسئلة الشائعة") -->
+<section id="faq" class="py-24 bg-luxury-surface/60 relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <span class="text-gold-400 text-sm font-bold tracking-widest uppercase font-tajawal">كل ما تحتاجين معرفته</span>
+      <h2 class="text-3xl md:text-5xl font-black font-cairo text-white mt-2">الأسئلة الشائعة</h2>
+      <div class="w-20 h-1 bg-gold-500 mx-auto mt-3 rounded-full"></div>
+    </div>
+
+    <!-- Accordion Container -->
+    <div class="space-y-4">
+      <div *ngFor="let faq of faqs; let i = index" class="bg-luxury-card border border-luxury-border rounded-2xl overflow-hidden transition-all duration-300 shadow-lg">
+        
+        <!-- Accordion Button -->
+        <button (click)="toggleAccordion(i)" class="w-full px-6 py-5 text-right flex items-center justify-between gap-4 focus:outline-none group">
+          <span class="text-lg font-bold font-cairo text-white group-hover:text-gold-400 transition-colors">
+            {{ faq.question }}
+          </span>
+          <span class="w-8 h-8 rounded-full bg-luxury-surface border border-luxury-border flex items-center justify-center text-gold-400 flex-shrink-0 transition-transform duration-300" [ngClass]="{'rotate-180 bg-gold-500/20 border-gold-500': activeAccordionIndex === i}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </button>
+
+        <!-- Accordion Answer -->
+        <div *ngIf="activeAccordionIndex === i" class="px-6 pb-6 pt-2 border-t border-luxury-border/50 text-luxury-muted font-tajawal text-base leading-relaxed animate-fade-in-up">
+          {{ faq.answer }}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Order Form Section ("اطلب الآن" - #order-form) -->
+<section id="order-form" class="py-24 relative overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="bg-luxury-card border-2 border-gold-500/40 rounded-3xl p-8 md:p-14 shadow-2xl relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600"></div>
+
+      <div class="text-center mb-10">
+        <span class="inline-block bg-gold-500/20 text-gold-400 font-bold px-4 py-1 rounded-full text-xs mb-3 font-cairo">طلب سريع وسهل</span>
+        <h2 class="text-3xl md:text-4xl font-black font-cairo text-white">اطلبي المنتج الآن</h2>
+        <p class="text-luxury-muted mt-2 font-tajawal">املئي بياناتك بالأسفل، وسيتم توجيهك فورًا إلى واتساب لتأكيد طلبك مباشرة دون أي تعقيد</p>
+      </div>
+
+      <!-- Custom Tailwind Form -->
+      <form (ngSubmit)="submitOrder()" #form="ngForm" class="space-y-6 font-cairo">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Name Input -->
+          <div>
+            <label for="name" class="block text-sm font-bold text-luxury-cream mb-2">الاسم الرباعي <span class="text-gold-400">*</span></label>
+            <input type="text" id="name" name="name" [(ngModel)]="orderForm.name" required placeholder="أدخلي اسمك بالكامل هنا"
+                   class="w-full bg-luxury-dark/90 border border-luxury-border rounded-xl px-4 py-3.5 text-white placeholder-luxury-muted focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all font-tajawal">
+          </div>
+
+          <!-- Phone Input -->
+          <div>
+            <label for="phone" class="block text-sm font-bold text-luxury-cream mb-2">رقم الهاتف (للتواصل والشحن) <span class="text-gold-400">*</span></label>
+            <input type="tel" id="phone" name="phone" [(ngModel)]="orderForm.phone" required placeholder="مثال: 01012345678"
+                   class="w-full bg-luxury-dark/90 border border-luxury-border rounded-xl px-4 py-3.5 text-white placeholder-luxury-muted focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all font-tajawal">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Governorate Dropdown -->
+          <div>
+            <label for="governorate" class="block text-sm font-bold text-luxury-cream mb-2">المحافظة <span class="text-gold-400">*</span></label>
+            <select id="governorate" name="governorate" [(ngModel)]="orderForm.governorate" required
+                    class="w-full bg-luxury-dark/90 border border-luxury-border rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all font-tajawal cursor-pointer">
+              <option value="" disabled selected>اختر محافظتك</option>
+              <option *ngFor="let gov of governorates" [value]="gov">{{ gov }}</option>
+            </select>
+          </div>
+
+          <!-- Quantity Input -->
+          <div>
+            <label for="quantity" class="block text-sm font-bold text-luxury-cream mb-2">الكمية المطلوبة</label>
+            <input type="number" id="quantity" name="quantity" [(ngModel)]="orderForm.quantity" min="1" max="50" required
+                   class="w-full bg-luxury-dark/90 border border-luxury-border rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all font-tajawal text-center font-bold">
+          </div>
+        </div>
+
+        <!-- Shipping Cost Notice -->
+        <div class="bg-luxury-dark/80 border border-luxury-border/80 rounded-2xl p-4 flex items-center justify-between font-tajawal text-sm">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-lg">🚚</span>
+            <div>
+              <span class="font-bold text-white block font-cairo">مصاريف الشحن والتوصيل</span>
+              <span *ngIf="!orderForm.governorate" class="text-luxury-muted text-xs">اختر المحافظة لحساب تكلفة الشحن بدقة</span>
+              <span *ngIf="orderForm.governorate" class="text-gold-300 text-xs">الشحن إلى محافظة ({{ orderForm.governorate }})</span>
+            </div>
+          </div>
+          <div class="text-left">
+            <span *ngIf="shippingCost > 0" class="text-lg font-black font-cairo text-gold-400">{{ shippingCost }} <span class="text-xs font-normal">جنيه</span></span>
+            <span *ngIf="shippingCost === 0" class="text-xs font-bold text-luxury-muted">70 أو 100 جنيه</span>
+          </div>
+        </div>
+
+        <!-- Payment Method Selector -->
+        <div class="pt-2">
+          <label class="block text-sm font-bold text-luxury-cream mb-3">طريقة الدفع المفضلة <span class="text-gold-400">*</span></label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <label class="relative flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all duration-300"
+                   [ngClass]="{'bg-gold-500/10 border-gold-500 shadow-gold-glow': orderForm.paymentMethod === 'cod', 'bg-luxury-dark/80 border-luxury-border hover:border-gold-500/40': orderForm.paymentMethod !== 'cod'}">
+              <input type="radio" name="paymentMethod" value="cod" [(ngModel)]="orderForm.paymentMethod" class="sr-only">
+              <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-xl flex-shrink-0">
+                💵
+              </div>
+              <div class="flex-1">
+                <span class="block font-bold text-white text-base">الدفع عند الاستلام</span>
+                <span class="block text-xs text-luxury-muted mt-0.5 font-tajawal">ادفعي للمندوب عند وصول الشحنة</span>
+              </div>
+              <div class="w-5 h-5 rounded-full border flex items-center justify-center transition-colors"
+                   [ngClass]="{'border-gold-500 bg-gold-500 text-luxury-dark': orderForm.paymentMethod === 'cod', 'border-luxury-border': orderForm.paymentMethod !== 'cod'}">
+                <span *ngIf="orderForm.paymentMethod === 'cod'" class="text-xs font-bold">✓</span>
+              </div>
+            </label>
+
+            <label class="relative flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition-all duration-300"
+                   [ngClass]="{'bg-gold-500/10 border-gold-500 shadow-gold-glow': orderForm.paymentMethod === 'instapay', 'bg-luxury-dark/80 border-luxury-border hover:border-gold-500/40': orderForm.paymentMethod !== 'instapay'}">
+              <input type="radio" name="paymentMethod" value="instapay" [(ngModel)]="orderForm.paymentMethod" class="sr-only">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl flex-shrink-0">
+                💜
+              </div>
+              <div class="flex-1">
+                <span class="block font-bold text-white text-base">التحويل عبر إنستاباي (InstaPay)</span>
+                <span class="block text-xs text-purple-300 mt-0.5 font-tajawal">تحويل سريع وآمن بدون عمولة</span>
+              </div>
+              <div class="w-5 h-5 rounded-full border flex items-center justify-center transition-colors"
+                   [ngClass]="{'border-gold-500 bg-gold-500 text-luxury-dark': orderForm.paymentMethod === 'instapay', 'border-luxury-border': orderForm.paymentMethod !== 'instapay'}">
+                <span *ngIf="orderForm.paymentMethod === 'instapay'" class="text-xs font-bold">✓</span>
+              </div>
+            </label>
+
+          </div>
+
+          <!-- InstaPay Notice Card -->
+          <div *ngIf="orderForm.paymentMethod === 'instapay'" class="mt-4 p-4 rounded-2xl bg-purple-950/40 border border-purple-500/40 flex items-start gap-3 animate-fade-in-up font-tajawal text-sm text-purple-200">
+            <span class="text-xl flex-shrink-0">💡</span>
+            <div>
+              <span class="font-bold text-white block font-cairo">كيف يتم التحويل عبر إنستاباي؟</span>
+              <span>بمجرد ضغطك على زر <span class="text-gold-400 font-bold">"إرسال الطلب عبر واتساب"</span> بالأسفل وتأكيد طلبك في المحادثة، سيقوم فريقنا بإرسال رقم الحساب أو عنوان الدفع (IPA) الخاص بنا لتحويل المبلغ بسهولة.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-gradient-to-r from-gold-600 via-gold-500 to-gold-400 hover:from-gold-500 hover:to-gold-300 text-luxury-dark font-black py-4 px-6 rounded-2xl shadow-gold-glow hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center justify-center gap-3">
+            <span>إرسال الطلب عبر واتساب</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.126.556 4.197 1.613 6.012L.119 23.498l5.666-1.485C7.534 23.084 9.73 24 11.999 24 18.626 24 24 18.627 24 12S18.626 0 11.999 0zM12 21.816c-1.921 0-3.805-.515-5.452-1.492l-.39-.232-4.053 1.062 1.082-3.953-.255-.407C1.94 15.114 1.411 13.586 1.411 12c0-5.839 4.75-10.589 10.589-10.589 5.839 0 10.589 4.75 10.589 10.589 0 5.839-4.75 10.589-10.589 10.589zm5.804-7.915c-.318-.159-1.881-.928-2.172-1.034-.291-.106-.503-.159-.715.159-.212.318-.82 1.034-1.006 1.246-.185.212-.371.238-.689.079-.318-.159-1.342-.495-2.557-1.577-.945-.842-1.583-1.883-1.768-2.201-.185-.318-.02-.489.139-.648.143-.143.318-.371.477-.557.159-.185.212-.318.318-.53.106-.212.053-.398-.026-.557-.079-.159-.715-1.724-.98-2.361-.258-.621-.52-.537-.715-.547l-.61-.01c-.212 0-.557.079-.848.398-.291.318-1.113 1.087-1.113 2.651 0 1.564 1.139 3.076 1.298 3.288.159.212 2.244 3.428 5.437 4.808.76.328 1.353.524 1.815.671.763.243 1.458.209 2.007.127.614-.092 1.881-.768 2.146-1.511.265-.742.265-1.378.185-1.511-.079-.133-.291-.212-.609-.371z"/>
+            </svg>
+          </button>
+        </div>
+
+      </form>
+
+      <div class="mt-6 text-center text-xs text-luxury-muted font-tajawal">
+        🔒 جميع بياناتك آمنة ومحمية، ولن يتم استخدامها إلا لإتمام وتأكيد شحنتك.
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-luxury-dark border-t border-luxury-border py-12 text-luxury-muted font-tajawal">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-luxury-border/40 items-center">
+      <!-- Brand & Description -->
+      <div class="space-y-3 text-center md:text-right">
+        <div class="flex items-center justify-center md:justify-start gap-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden border border-gold-500">
+            <img src="logo.jpeg" alt="Logo" class="w-full h-full object-cover">
+          </div>
+          <span class="text-xl font-bold font-cairo text-white">The Goldy Choices</span>
+        </div>
+        <p class="text-sm text-luxury-muted leading-relaxed">
+          نقدم منتجات عناية بالجسم يتم تطويرها بعناية واهتمام حقيقي بالجودة لتمنحك تجربة استخدام مميزة وثقة تامة بنفسك.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="text-center md:text-right space-y-2 font-cairo">
+        <h4 class="text-white font-bold mb-3">روابط سريعة</h4>
+        <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm">
+          <a href="#hero" class="hover:text-gold-400 transition-colors">الرئيسية</a>
+          <a href="#products" class="hover:text-gold-400 transition-colors">منتجاتنا</a>
+          <a href="#about" class="hover:text-gold-400 transition-colors">من نحن</a>
+          <a href="#ingredients" class="hover:text-gold-400 transition-colors">المكونات</a>
+          <a href="#faq" class="hover:text-gold-400 transition-colors">الأسئلة الشائعة</a>
+        </div>
+      </div>
+
+      <!-- Licensing & Social Placeholder -->
+      <div class="text-center md:text-left space-y-3">
+        <div class="inline-block bg-luxury-surface border border-gold-500/30 px-4 py-2 rounded-xl text-xs">
+          <span class="block text-gold-400 font-cairo font-bold">هيئة الدواء المصرية</span>
+          <span class="font-mono text-white tracking-wider">COSMTOL26127860</span>
+        </div>
+        <p class="text-xs text-luxury-muted">
+          تواصل معنا على مدار الساعة للاستفسارات والدعم الفني عبر واتساب.
+        </p>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <p>© 2026 The Goldy Choices. جميع الحقوق محفوظة.</p>
+      <p class="text-luxury-muted/60">صُمم بشغف لعناية فائقة وتجربة استثنائية</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/201040731276?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D9%84%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20The%20Goldy%20Choices%20Cream"
+   target="_blank" rel="noopener noreferrer"
+   class="fixed bottom-6 right-6 z-50 group flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#1DA851] text-white px-4 py-3 rounded-full shadow-2xl hover:shadow-[0_0_25px_rgba(37,211,102,0.6)] transition-all duration-300 transform hover:-translate-y-1 font-cairo">
+  <div class="w-7 h-7 flex items-center justify-center relative">
+    <span class="absolute -inset-1 bg-white/30 rounded-full animate-ping"></span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.126.556 4.197 1.613 6.012L.119 23.498l5.666-1.485C7.534 23.084 9.73 24 11.999 24 18.626 24 24 18.627 24 12S18.626 0 11.999 0zM12 21.816c-1.921 0-3.805-.515-5.452-1.492l-.39-.232-4.053 1.062 1.082-3.953-.255-.407C1.94 15.114 1.411 13.586 1.411 12c0-5.839 4.75-10.589 10.589-10.589 5.839 0 10.589 4.75 10.589 10.589 0 5.839-4.75 10.589-10.589 10.589zm5.804-7.915c-.318-.159-1.881-.928-2.172-1.034-.291-.106-.503-.159-.715.159-.212.318-.82 1.034-1.006 1.246-.185.212-.371.238-.689.079-.318-.159-1.342-.495-2.557-1.577-.945-.842-1.583-1.883-1.768-2.201-.185-.318-.02-.489.139-.648.143-.143.318-.371.477-.557.159-.185.212-.318.318-.53.106-.212.053-.398-.026-.557-.079-.159-.715-1.724-.98-2.361-.258-.621-.52-.537-.715-.547l-.61-.01c-.212 0-.557.079-.848.398-.291.318-1.113 1.087-1.113 2.651 0 1.564 1.139 3.076 1.298 3.288.159.212 2.244 3.428 5.437 4.808.76.328 1.353.524 1.815.671.763.243 1.458.209 2.007.127.614-.092 1.881-.768 2.146-1.511.265-.742.265-1.378.185-1.511-.079-.133-.291-.212-.609-.371z"/>
+    </svg>
+  </div>
+  <span class="font-bold text-sm hidden sm:inline group-hover:inline transition-all">تواصل عبر واتساب</span>
+</a>
