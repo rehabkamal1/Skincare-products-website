@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -20,10 +20,33 @@ interface FaqItem {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isMobileMenuOpen = false;
   activeAccordionIndex: number | null = null;
   isScrolled = false;
+  isDarkMode = false;
+
+  ngOnInit() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      this.isDarkMode = true;
+      document.documentElement.classList.add('dark');
+    } else {
+      this.isDarkMode = false;
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }
 
   orderForm = {
     name: '',
