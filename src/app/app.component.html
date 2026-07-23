@@ -548,20 +548,62 @@
           </div>
         </div>
 
-        <!-- Shipping Cost Notice -->
-        <div class="bg-luxury-light-surface dark:bg-luxury-dark/80 border border-luxury-light-border dark:border-luxury-border/80 rounded-2xl p-4 flex items-center justify-between font-tajawal text-sm">
-          <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl bg-gold-500/10 text-gold-600 dark:text-gold-400 flex items-center justify-center text-lg">🚚</span>
-            <div>
-              <span class="font-bold text-luxury-light-text dark:text-white block font-cairo">مصاريف الشحن والتوصيل</span>
-              <span *ngIf="!orderForm.governorate" class="text-luxury-light-muted dark:text-luxury-muted text-xs">اختر المحافظة لحساب تكلفة الشحن بدقة</span>
-              <span *ngIf="orderForm.governorate" class="text-gold-600 dark:text-gold-300 text-xs">الشحن إلى محافظة ({{ orderForm.governorate }})</span>
+        <!-- Detailed Address -->
+        <div>
+          <label for="detailedAddress" class="block text-sm font-bold text-luxury-light-text dark:text-luxury-cream mb-2">العنوان بالتفصيل <span class="text-gold-600 dark:text-gold-400">*</span></label>
+          <input type="text" id="detailedAddress" name="detailedAddress" [(ngModel)]="orderForm.detailedAddress" required placeholder="اسم الشارع، رقم العمارة، رقم الشقة، أو أي علامة مميزة"
+                 class="w-full bg-luxury-light-surface/80 dark:bg-luxury-dark/90 border border-luxury-light-border dark:border-luxury-border rounded-xl px-4 py-3.5 text-luxury-light-text dark:text-white placeholder-luxury-light-muted/70 dark:placeholder-luxury-muted focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all font-tajawal">
+        </div>
+
+        <!-- Order Summary Notice -->
+        <div class="bg-luxury-light-surface dark:bg-luxury-dark/80 border border-luxury-light-border dark:border-luxury-border/80 rounded-2xl p-4 font-tajawal text-sm space-y-3">
+          
+          <!-- Product Total -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-gold-500/10 text-gold-600 dark:text-gold-400 flex items-center justify-center text-lg">📦</span>
+              <div>
+                <span class="font-bold text-luxury-light-text dark:text-white block font-cairo">إجمالي المنتج</span>
+                <span class="text-gold-600 dark:text-gold-300 text-xs">الكمية: {{ orderForm.quantity || 1 }} عبوة</span>
+              </div>
+            </div>
+            <div class="text-left">
+              <span class="text-lg font-black font-cairo text-gold-600 dark:text-gold-400">{{ totalProductPrice }} <span class="text-xs font-normal">جنيه</span></span>
             </div>
           </div>
-          <div class="text-left">
-            <span *ngIf="shippingCost > 0" class="text-lg font-black font-cairo text-gold-600 dark:text-gold-400">{{ shippingCost }} <span class="text-xs font-normal">جنيه</span></span>
-            <span *ngIf="shippingCost === 0" class="text-xs font-bold text-luxury-light-muted dark:text-luxury-muted">70 أو 100 جنيه</span>
+
+          <div class="border-t border-luxury-light-border/50 dark:border-luxury-border/50"></div>
+
+          <!-- Shipping -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-gold-500/10 text-gold-600 dark:text-gold-400 flex items-center justify-center text-lg">🚚</span>
+              <div>
+                <span class="font-bold text-luxury-light-text dark:text-white block font-cairo">مصاريف الشحن</span>
+                <span *ngIf="!orderForm.governorate" class="text-luxury-light-muted dark:text-luxury-muted text-xs">اختر المحافظة للحساب</span>
+                <span *ngIf="orderForm.governorate" class="text-gold-600 dark:text-gold-300 text-xs">محافظة ({{ orderForm.governorate }})</span>
+              </div>
+            </div>
+            <div class="text-left">
+              <span *ngIf="shippingCost > 0" class="text-lg font-black font-cairo text-gold-600 dark:text-gold-400">{{ shippingCost }} <span class="text-xs font-normal">جنيه</span></span>
+              <span *ngIf="shippingCost === 0" class="text-xs font-bold text-luxury-light-muted dark:text-luxury-muted">70 أو 100 جنيه</span>
+            </div>
           </div>
+
+          <div class="border-t border-luxury-light-border/50 dark:border-luxury-border/50"></div>
+
+          <!-- Grand Total -->
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-gold-600 text-white flex items-center justify-center text-lg shadow-gold-glow">💰</span>
+              <span class="font-black text-luxury-light-text dark:text-white text-base font-cairo">الإجمالي النهائي</span>
+            </div>
+            <div class="text-left">
+              <span *ngIf="shippingCost > 0" class="text-2xl font-black font-cairo text-luxury-light-text dark:text-white">{{ totalOrderPrice }} <span class="text-sm font-normal">جنيه</span></span>
+              <span *ngIf="shippingCost === 0" class="text-sm font-bold text-luxury-light-muted dark:text-luxury-muted">سيتم حسابه بعد اختيار المحافظة</span>
+            </div>
+          </div>
+
         </div>
 
         <!-- Payment Method Selector -->

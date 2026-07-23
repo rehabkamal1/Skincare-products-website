@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
     name: '',
     phone: '',
     governorate: '',
+    detailedAddress: '',
     quantity: 1,
     paymentMethod: 'cod' // 'cod' or 'instapay'
   };
@@ -62,6 +63,17 @@ export class AppComponent implements OnInit {
       return 70;
     }
     return 100;
+  }
+
+  get totalProductPrice(): number {
+    const qty = this.orderForm.quantity || 1;
+    const pairs = Math.floor(qty / 2);
+    const singles = qty % 2;
+    return (pairs * 510) + (singles * 320);
+  }
+
+  get totalOrderPrice(): number {
+    return this.totalProductPrice + this.shippingCost;
   }
 
   governorates: string[] = [
@@ -179,8 +191,8 @@ export class AppComponent implements OnInit {
   }
 
   submitOrder() {
-    if (!this.orderForm.name || !this.orderForm.phone || !this.orderForm.governorate) {
-      alert('يرجى استكمال جميع البيانات المطلوبة (الاسم، رقم الهاتف، والمحافظة) لإتمام الطلب.');
+    if (!this.orderForm.name || !this.orderForm.phone || !this.orderForm.governorate || !this.orderForm.detailedAddress) {
+      alert('يرجى استكمال جميع البيانات المطلوبة (الاسم، رقم الهاتف، المحافظة، والعنوان بالتفصيل) لإتمام الطلب.');
       return;
     }
 
@@ -196,8 +208,11 @@ export class AppComponent implements OnInit {
       `📌 الاسم: ${this.orderForm.name}\n` +
       `📞 الهاتف: ${this.orderForm.phone}\n` +
       `🏛️ المحافظة: ${this.orderForm.governorate}\n` +
+      `📍 العنوان بالتفصيل: ${this.orderForm.detailedAddress}\n` +
       `📦 الكمية: ${this.orderForm.quantity}\n` +
+      `💰 إجمالي المنتج: ${this.totalProductPrice} جنيه\n` +
       `🚚 مصاريف الشحن: ${shippingCostLabel}\n` +
+      `🧾 إجمالي الطلب (شامل الشحن): ${this.totalOrderPrice} جنيه\n` +
       `💳 طريقة الدفع: ${paymentMethodLabel}`;
 
     // Redirect to WhatsApp with pre-filled message using user's phone number
