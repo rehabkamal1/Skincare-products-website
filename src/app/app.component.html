@@ -400,41 +400,19 @@
 <section id="ingredients" class="py-24 relative overflow-hidden bg-luxury-light-bg dark:bg-luxury-dark">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="text-center max-w-3xl mx-auto mb-16">
+    <div class="text-center max-w-4xl mx-auto">
       <span class="text-gold-600 dark:text-gold-400 text-sm font-bold tracking-widest uppercase font-tajawal">التركيبة المتطورة</span>
       <h2 class="text-3xl md:text-5xl font-black font-cairo text-luxury-light-text dark:text-white mt-2">المكونات الفعالة</h2>
-      <div class="w-24 h-1.5 bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mt-4 rounded-full"></div>
-      <p class="text-luxury-light-muted dark:text-luxury-muted mt-4 font-tajawal text-lg">
-        اخترنا لك نخبة من أفضل المكونات الطبيعية والمستخلصات الفائقة لضمان فعالية حقيقية ولمسة حريرية
-      </p>
-    </div>
-
-    <!-- Ingredients Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div *ngFor="let item of ingredients" class="bg-white dark:bg-luxury-card border border-luxury-light-border dark:border-luxury-border hover:border-gold-500/60 p-6 rounded-3xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group shadow-md dark:shadow-luxury">
-        <div>
-          <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-3xl mb-5 group-hover:scale-110 transition-transform">
-            {{ item.icon }}
-          </div>
-          <h3 class="text-xl font-bold font-cairo text-luxury-light-text dark:text-white mb-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
-            {{ item.name }}
-          </h3>
-          <p class="text-luxury-light-muted dark:text-luxury-muted font-tajawal text-sm leading-relaxed">
-            {{ item.description }}
-          </p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-luxury-light-border/40 dark:border-luxury-border/40 flex items-center justify-between text-xs text-gold-600/80 dark:text-gold-400/80 font-tajawal">
-          <span>عناية فائقة</span>
-          <span>✦</span>
-        </div>
+      <div class="w-24 h-1.5 bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mt-4 mb-10 rounded-full"></div>
+      
+      <div class="bg-white/80 dark:bg-luxury-card/80 border border-gold-500/20 shadow-xl dark:shadow-2xl rounded-3xl p-8 md:p-12 backdrop-blur-sm relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <p class="text-xl md:text-2xl text-luxury-light-text dark:text-white font-tajawal leading-relaxed md:leading-loose relative z-10">
+          يتميز <span class="text-gold-600 dark:text-gold-400 font-bold font-cairo">The Goldy Choices Cream</span> بتركيبة غنية بمكونات فعالة وآمنة، صُممت للمساعدة على شد الجلد، وتحسين شكل البطن، وتقليل مظهر السيلوليت، مع العناية بالبشرة ومنحها مظهرًا أكثر نعومة وتناسقًا
+        </p>
       </div>
-    </div>
-
-    <!-- Bottom Note -->
-    <div class="mt-12 max-w-3xl mx-auto text-center bg-luxury-light-surface dark:bg-luxury-surface border border-luxury-light-border/60 dark:border-luxury-border/60 p-4 sm:p-5 rounded-2xl">
-      <p class="text-sm sm:text-base text-luxury-light-muted dark:text-luxury-muted font-tajawal leading-relaxed">
-        ✨ <span class="text-gold-600 dark:text-gold-400 font-semibold">ملاحظة:</span> لا تقتصر التركيبة على هذه المكونات فقط، بل تحتوي أيضًا على مجموعة مختارة بعناية من المكونات الداعمة التي تكمل عملها للمساعدة في تحسين مظهر البطن، ودعم شد البشرة، وتعزيز نعومتها، وتحسين مظهر السيلوليت.
-      </p>
     </div>
 
   </div>

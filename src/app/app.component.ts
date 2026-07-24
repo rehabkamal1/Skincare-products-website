@@ -2,12 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-interface IngredientCard {
-  icon: string;
-  name: string;
-  description: string;
-}
-
 interface FaqItem {
   question: string;
   answer: string;
@@ -106,33 +100,7 @@ export class AppComponent implements OnInit {
     'سوهاج'
   ];
 
-  ingredients: IngredientCard[] = [
-    {
-      icon: '☕',
-      name: 'Coffee Seed Oil & Caffeine',
-      description: 'يساعدان على تنشيط الدورة الدموية الدقيقة أثناء التدليك، ويدعمان تقليل احتباس السوائل المؤقت وتحسين مظهر وحجم البطن، مع المساهمة في تحسين مظهر السيلوليت، مما يمنح منطقة البطن مظهرًا أكثر تناسقًا.'
-    },
-    {
-      icon: '🌸',
-      name: 'Bakuchiol',
-      description: 'يساعد على دعم إنتاج الكولاجين وتحسين مرونة البشرة، مما يساعد على شد الجلد، ويساهم في تحسين المظهر العام للبشرة وجعل مظهر السيلوليت أقل وضوحًا.'
-    },
-    {
-      icon: '🌱',
-      name: 'Centella Asiatica Extract',
-      description: 'يساعد على إنتاج الكولاجين مما يعزز مرونة البشرة ودعم تماسكها، ليمنح الجلد مظهرًا أكثر شدًا ونعومة وأقل حجمًا، ويساهم في تحسين مظهر السيلوليت مع الاستخدام المنتظم.'
-    },
-    {
-      icon: '🥑',
-      name: 'Vitamin E & Panthenol',
-      description: 'تركيبة مغذية تساعد البشرة على مقاومة الجفاف، والحفاظ على مرونتها ونعومتها، لتبدو أكثر صحة مع الاستخدام المنتظم.'
-    },
-    {
-      icon: '🍃',
-      name: 'Green Tea Extract',
-      description: 'يعزز صحة البشرة بفضل مضادات الأكسدة الطبيعية، ليساعد على الحفاظ على مرونتها ومظهرها المشدود، ويمنحها نعومة وإشراقة طبيعية.'
-    }
-  ];
+
 
   faqs: FaqItem[] = [
     {
